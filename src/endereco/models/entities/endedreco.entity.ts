@@ -1,7 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { PessoaEntity } from 'src/pessoa/models/entities/pessoa.entity';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity('endereco')
-export class EnderecoEntiry {
+export class EnderecoEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -19,4 +26,11 @@ export class EnderecoEntiry {
 
   @Column({ name: 'uf' })
   uf: string;
+
+  @Column({ unique: true, name: 'id_pessoa' })
+  idPessoa: number;
+
+  @OneToOne(() => PessoaEntity, (pessoa: PessoaEntity) => pessoa.endereco)
+  @JoinColumn({ name: 'id_pessoa' })
+  pessoa: PessoaEntity;
 }

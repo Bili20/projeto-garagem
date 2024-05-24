@@ -1,5 +1,15 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { PessoaCadastroDTO } from '../dtos/pessoaCadastro.dto';
+import { EnderecoEntity } from 'src/endereco/models/entities/endedreco.entity';
+import { PostagenEntity } from 'src/postagem/models/entites/postagen.entity';
 
 @Entity('pessoa')
 export class PessoaEntity {
@@ -13,7 +23,7 @@ export class PessoaEntity {
   @Column({ name: 'nome' })
   nome: string;
 
-  @Column({ name: 'documento' })
+  @Column({ unique: true, name: 'documento' })
   documento: string;
 
   @Column({ name: 'data_nacimento', type: 'date' })
@@ -22,9 +32,18 @@ export class PessoaEntity {
   @Column({ name: 'sexo' })
   sexo: string;
 
-  @Column({ name: 'email' })
+  @Column({ unique: true, name: 'email' })
   email: string;
 
   @Column({ name: 'senha' })
   senha: string;
+
+  @OneToOne(() => EnderecoEntity, (endereco: EnderecoEntity) => endereco.pessoa)
+  endereco: EnderecoEntity;
+
+  @OneToMany(
+    () => PostagenEntity,
+    (postagen: PostagenEntity) => postagen.pessoa,
+  )
+  postagen: PostagenEntity[];
 }
