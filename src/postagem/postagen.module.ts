@@ -7,4 +7,4 @@ import { PostagenEntity } from './models/entites/postagen.entity';
   providers: [],
   controllers: [],
 })
-export class PsotagenModule {}
+export class PostagenModule {}

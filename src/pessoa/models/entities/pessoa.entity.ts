@@ -1,15 +1,19 @@
+import { EnderecoEntity } from 'src/endereco/models/entities/endedreco.entity';
+import { PostagenEntity } from 'src/postagem/models/entites/postagen.entity';
 import {
   Column,
   Entity,
-  JoinColumn,
   OneToMany,
   OneToOne,
-  PrimaryColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PessoaCadastroDTO } from '../dtos/pessoaCadastro.dto';
-import { EnderecoEntity } from 'src/endereco/models/entities/endedreco.entity';
-import { PostagenEntity } from 'src/postagem/models/entites/postagen.entity';
+
+export enum sexosEnum {
+  M = 'Masculino',
+  F = 'Feminino',
+  O = 'Outro',
+}
 
 @Entity('pessoa')
 export class PessoaEntity {
