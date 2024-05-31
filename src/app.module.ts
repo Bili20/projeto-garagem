@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
 import { PessoaModule } from './pessoa/pessoa.module';
 import { EnderecoModule } from './endereco/endereco.module';
-import { PostagenModule } from './postagem/postagen.module';
+import { PostagemModule } from './postagem/postagem.module';
 import { MidiaModule } from './midia/midia.module';
 
 @Module({
@@ -11,7 +11,7 @@ import { MidiaModule } from './midia/midia.module';
     TypeOrmModule.forRoot(typeOrmConfig),
     PessoaModule,
     EnderecoModule,
-    PostagenModule,
+    PostagemModule,
     MidiaModule,
   ],
 })

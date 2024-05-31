@@ -1,6 +1,6 @@
-import { CriarPostagenDTO } from '../dtos/criarPostagen.dto';
-import { PostagenEntity } from '../entites/postagen.entity';
+import { CriarPostagemDTO } from '../dtos/criarPostagen.dto';
+import { PostagemEntity } from '../entites/postagem.entity';
 
 export interface IPostagenRepo {
-  criar(param: CriarPostagenDTO): Promise<PostagenEntity>;
+  criar(param: CriarPostagemDTO): Promise<PostagemEntity>;
 }

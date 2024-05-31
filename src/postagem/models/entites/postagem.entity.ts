@@ -13,15 +13,19 @@ export enum statusEnum {
   D = 'Disponivel',
   V = 'Vendido',
 }
-@Entity('postagen')
-export class PostagenEntity {
+@Entity('postagem')
+export class PostagemEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ name: 'titulo' })
   titulo: string;
 
-  @Column({ name: 'data_cadastro' })
+  @Column({
+    name: 'data_cadastro',
+    type: 'timestamptz',
+    default: () => 'CURRENT_TIMESTAMP',
+  })
   dataCadastro: Date;
 
   @Column({ name: 'status' })

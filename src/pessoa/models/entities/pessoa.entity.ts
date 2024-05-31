@@ -1,5 +1,5 @@
 import { EnderecoEntity } from 'src/endereco/models/entities/endedreco.entity';
-import { PostagenEntity } from 'src/postagem/models/entites/postagen.entity';
+import { PostagemEntity } from 'src/postagem/models/entites/postagem.entity';
 import {
   Column,
   Entity,
@@ -46,8 +46,8 @@ export class PessoaEntity {
   endereco: EnderecoEntity;
 
   @OneToMany(
-    () => PostagenEntity,
-    (postagen: PostagenEntity) => postagen.pessoa,
+    () => PostagemEntity,
+    (postagen: PostagemEntity) => postagen.pessoa,
   )
-  postagen: PostagenEntity[];
+  postagen: PostagemEntity[];
 }

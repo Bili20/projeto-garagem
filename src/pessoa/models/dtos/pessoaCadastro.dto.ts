@@ -1,5 +1,4 @@
-import { IsEmail, IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { sexosEnum } from '../entities/pessoa.entity';
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
 
 export class PessoaCadastroDTO {
   @IsString()
@@ -11,8 +10,8 @@ export class PessoaCadastroDTO {
   @IsString()
   dataNacimento: Date;
 
-  @IsEnum(sexosEnum)
-  sexo: sexosEnum;
+  @IsString()
+  sexo: string;
 
   @IsEmail()
   email: string;

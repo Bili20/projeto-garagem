@@ -1,4 +1,4 @@
-import { PostagenEntity } from 'src/postagem/models/entites/postagen.entity';
+import { PostagemEntity } from 'src/postagem/models/entites/postagem.entity';
 import {
   Column,
   Entity,
@@ -15,10 +15,10 @@ export class MidiaEntity {
   @Column({ name: 'string' })
   nome: string;
 
-  @Column({ name: 'id_postagen' })
-  idPostagen: number;
+  @Column({ name: 'id_postagem' })
+  idPostagem: number;
 
-  @ManyToOne(() => PostagenEntity, (postagen: PostagenEntity) => postagen.midia)
-  @JoinColumn({ name: 'id_postagen' })
-  postagen: PostagenEntity;
+  @ManyToOne(() => PostagemEntity, (postagem: PostagemEntity) => postagem.midia)
+  @JoinColumn({ name: 'id_postagem' })
+  postagen: PostagemEntity;
 }
