@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  HttpException,
   Inject,
   Post,
   UploadedFiles,
@@ -12,6 +13,7 @@ import { extname } from 'path';
 import { SalvarMidiaUsecase } from 'src/midia/usueCases/salvarMidia.use-case';
 import { CriarPostagemDTO } from 'src/postagem/models/dtos/criarPostagen.dto';
 import { CriaPostUseCase } from './criaPost.use-case';
+import { existsSync, unlinkSync } from 'fs';
 
 @Controller('postar')
 export class CriaPostController {
@@ -40,12 +42,24 @@ export class CriaPostController {
     @Body() param: CriarPostagemDTO,
     @UploadedFiles() files: Array<Express.Multer.File>,
   ) {
-    const post = await this.criaPostUseCase.execute(param);
-    files.map(async (file) => {
-      await this.salvarMidiaUsecase.execute({
-        idPostagem: post.id,
-        nome: file.filename,
+    try {
+      const post = await this.criaPostUseCase.execute(param);
+      files.map(async (file) => {
+        await this.salvarMidiaUsecase.execute({
+          idPostagem: post.id,
+          nome: file.filename,
+        });
       });
-    });
+    } catch (e) {
+      for (const file of files) {
+        if (existsSync('files/posts/' + file.filename)) {
+          unlinkSync('files/posts/' + file.filename);
+        }
+      }
+      throw new HttpException(
+        e.response ?? 'Erro ao fazer post',
+        e.status ?? 400,
+      );
+    }
   }
 }
