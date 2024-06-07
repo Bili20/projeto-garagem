@@ -15,4 +15,12 @@ export class MidiaRepo implements IMidiaRepo {
   async salvar(param: SalvarMidiaDTO): Promise<void> {
     await this.midiaRepo.save(param);
   }
+
+  async deletar(param: MidiaEntity): Promise<void> {
+    await this.midiaRepo.delete(param);
+  }
+
+  async buscaMidias(idPostagem: number): Promise<MidiaEntity[]> {
+    return await this.midiaRepo.find({ where: { idPostagem: idPostagem } });
+  }
 }
