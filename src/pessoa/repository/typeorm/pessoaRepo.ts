@@ -11,9 +11,10 @@ export class PessoaRepo implements IPessoaRepo {
     @InjectRepository(PessoaEntity)
     private readonly pessoaRepo: Repository<PessoaEntity>,
   ) {}
-  async cadastrar(param: PessoaCadastroDTO): Promise<void> {
+  async cadastrar(param: PessoaCadastroDTO): Promise<number> {
     const pessoa = new PessoaEntity(param);
-    await this.pessoaRepo.save(pessoa);
+    const data = await this.pessoaRepo.save(pessoa);
+    return data.id;
   }
 
   async buscarPessoas(): Promise<PessoaEntity[]> {
