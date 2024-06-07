@@ -9,7 +9,7 @@ export class CriaPostUseCase {
 
   async execute(param: CriarPostagemDTO) {
     param.status = 'Disponivel';
-    param.idPessoa = 1;
+    param.idPessoa = param.idPessoa;
     return this.postagenRepo.criar(param);
   }
 }
