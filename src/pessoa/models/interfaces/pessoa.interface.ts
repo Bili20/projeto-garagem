@@ -3,7 +3,7 @@ import { PessoaCadastroDTO } from '../dtos/pessoaCadastro.dto';
 import { PessoaEntity } from '../entities/pessoa.entity';
 
 export interface IPessoaRepo {
-  cadastrar(param: PessoaCadastroDTO): Promise<void>;
+  cadastrar(param: PessoaCadastroDTO): Promise<number>;
   buscarPessoas(): Promise<PessoaEntity[]>;
   buscarUmaPessoa(id: number): Promise<PessoaEntity>;
 }
