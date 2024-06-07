@@ -10,7 +10,7 @@ import {
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
-import { SalvarMidiaUsecase } from 'src/midia/usueCases/salvarMidia.use-case';
+import { SalvarMidiaUsecase } from 'src/midia/usueCases/salvarMidia/salvarMidia.use-case';
 import { CriarPostagemDTO } from 'src/postagem/models/dtos/criarPostagen.dto';
 import { CriaPostUseCase } from './criaPost.use-case';
 import { existsSync, unlinkSync } from 'fs';
