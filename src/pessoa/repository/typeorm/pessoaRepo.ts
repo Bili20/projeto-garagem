@@ -19,7 +19,16 @@ export class PessoaRepo implements IPessoaRepo {
 
   async buscarPessoas(): Promise<PessoaEntity[]> {
     return await this.pessoaRepo.find({
-      select: ['id', 'email', 'documento', 'email', 'sexo', 'dataNacimento'],
+      select: [
+        'id',
+        'email',
+        'documento',
+        'email',
+        'sexo',
+        'dataNacimento',
+        'nome',
+      ],
+      relations: { midia: true },
     });
   }
 
