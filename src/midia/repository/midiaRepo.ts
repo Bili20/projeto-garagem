@@ -3,7 +3,6 @@ import { IMidiaRepo } from '../models/interfaces/midiaRepo.interface';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MidiaEntity } from '../models/entities/midia.entity';
-import { SalvarMidiaDTO } from '../models/dtos/salvarMidia.dto';
 
 @Injectable()
 export class MidiaRepo implements IMidiaRepo {
@@ -12,7 +11,7 @@ export class MidiaRepo implements IMidiaRepo {
     private readonly midiaRepo: Repository<MidiaEntity>,
   ) {}
 
-  async salvar(param: SalvarMidiaDTO): Promise<void> {
+  async salvar(param: MidiaEntity): Promise<void> {
     await this.midiaRepo.save(param);
   }
 
@@ -22,5 +21,13 @@ export class MidiaRepo implements IMidiaRepo {
 
   async buscaMidias(idPostagem: number): Promise<MidiaEntity[]> {
     return await this.midiaRepo.find({ where: { idPostagem: idPostagem } });
+  }
+
+  async buscaUm(id: number): Promise<MidiaEntity> {
+    return await this.midiaRepo.findOne({ where: { id: id } });
+  }
+
+  async atualizar(id: number, param: MidiaEntity): Promise<void> {
+    await this.midiaRepo.update(id, param);
   }
 }
