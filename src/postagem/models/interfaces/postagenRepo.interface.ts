@@ -1,4 +1,4 @@
-import { CriarPostagemDTO } from '../dtos/criarPostagen.dto';
+import { CriarPostagemDTO } from '../dtos/criarPostagem.dto';
 import { PegaPostesDTO } from '../dtos/pegaPostes.dto';
 import { PostagemEntity } from '../entites/postagem.entity';
 
