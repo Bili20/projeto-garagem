@@ -4,7 +4,7 @@ import { PostagemEntity } from './models/entites/postagem.entity';
 import { CriaPostUseCase } from './useCases/posta/criaPost.use-case';
 import { PostagenRepo as PostagemRepo } from './repository/postagenRepo';
 import { CriaPostController } from './useCases/posta/criaPost.controller';
-import { SalvarMidiaUsecase } from 'src/midia/usueCases/salvarMidia/salvarMidia.use-case';
+import { SalvarMidiaPostUsecase } from 'src/midia/usueCases/salvarMidiaPost/salvarMidia.use-case';
 import { MidiaRepo } from 'src/midia/repository/midiaRepo';
 import { MidiaEntity } from 'src/midia/models/entities/midia.entity';
 import { PegarPostesPessoaUseCase } from './useCases/pegaPostesPessoa/pegaPostesPessoa.use-case';
@@ -26,7 +26,7 @@ import { PegaPostesController } from './useCases/pegaPostes/pegaPostes.controlle
     PegaPostesUseCase,
     PostagemRepo,
     { provide: 'IPostagenRepo', useExisting: PostagemRepo },
-    SalvarMidiaUsecase,
+    SalvarMidiaPostUsecase,
     DeletaMidiaUseCase,
     MidiaRepo,
     { provide: 'IMidiaRepo', useExisting: MidiaRepo },
