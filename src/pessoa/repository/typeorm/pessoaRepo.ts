@@ -24,6 +24,14 @@ export class PessoaRepo implements IPessoaRepo {
   }
 
   async buscarUmaPessoa(id: number): Promise<PessoaEntity> {
-    return await this.pessoaRepo.findOne({ where: { id: id } });
+    return await this.pessoaRepo.findOne({
+      where: { id: id },
+      relations: { midia: true },
+    });
+  }
+
+  async atualizar(id: number, param: PessoaEntity): Promise<number> {
+    await this.pessoaRepo.update(id, param);
+    return id;
   }
 }
