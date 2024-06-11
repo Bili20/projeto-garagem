@@ -8,6 +8,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { PessoaCadastroDTO } from '../dtos/pessoaCadastro.dto';
+import { MidiaEntity } from 'src/midia/models/entities/midia.entity';
 
 export enum sexosEnum {
   M = 'Masculino',
@@ -17,7 +18,14 @@ export enum sexosEnum {
 
 @Entity('pessoa')
 export class PessoaEntity {
-  constructor(props?: PessoaCadastroDTO) {
+  constructor(props?: {
+    nome?: string;
+    documento?: string;
+    dataNacimento?: Date;
+    sexo?: string;
+    email?: string;
+    senha?: string;
+  }) {
     Object.assign(this, props);
   }
 
@@ -50,4 +58,7 @@ export class PessoaEntity {
     (postagen: PostagemEntity) => postagen.pessoa,
   )
   postagen: PostagemEntity[];
+
+  @OneToOne(() => MidiaEntity, (midia: MidiaEntity) => midia.pessoa)
+  midia: MidiaEntity;
 }
