@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CriarPostagemDTO } from 'src/postagem/models/dtos/criarPostagen.dto';
+import { CriarPostagemDTO } from 'src/postagem/models/dtos/criarPostagem.dto';
 import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
 
 @Injectable()
