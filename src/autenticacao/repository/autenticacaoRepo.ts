@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PessoaEntity } from 'src/pessoa/models/entities/pessoa.entity';
 import { Repository } from 'typeorm';
 import { IAutenticacaoRepo } from '../models/interfaces/autenticacaoRepo.interface';
-import { LoginDTO } from '../models/dtos/login.dto';
 
 @Injectable()
 export class AutenticacaoRepo implements IAutenticacaoRepo {

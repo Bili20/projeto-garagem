@@ -24,8 +24,22 @@ export class PostagenRepo implements IPostagenRepo {
   }
 
   async postes(params: PegaPostesDTO): Promise<PostagemEntity[]> {
-    return this.postagemRepo
+    return await this.postagemRepo
       .createQueryBuilder('post')
+      .select([
+        'post.id',
+        'post.titulo',
+        'post.descricao',
+        'post.valor',
+        'post.anuncio',
+        'post.dataCadastro',
+        'post.status',
+        'post.idPessoa',
+      ])
+      .addSelect(['pessoa.nome'])
+      .addSelect(['midia.nome'])
+      .innerJoin('post.pessoa', 'pessoa')
+      .innerJoin('post.midia', 'midia')
       .orderBy('post.dataCadastro', 'DESC')
       .take(params.quantidade)
       .skip((params.pagina - 1) * params.quantidade)

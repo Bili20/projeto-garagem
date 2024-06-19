@@ -43,4 +43,8 @@ export class PessoaRepo implements IPessoaRepo {
     await this.pessoaRepo.update(id, param);
     return id;
   }
+
+  async buscaporEmail(email: string): Promise<PessoaEntity> {
+    return await this.pessoaRepo.findOne({ where: { email: email } });
+  }
 }

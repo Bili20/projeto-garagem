@@ -6,5 +6,6 @@ export interface IPessoaRepo {
   cadastrar(param: PessoaCadastroDTO): Promise<number>;
   buscarPessoas(): Promise<PessoaEntity[]>;
   buscarUmaPessoa(id: number): Promise<PessoaEntity>;
+  buscaporEmail(email: string): Promise<PessoaEntity>;
   atualizar(id: number, param: PessoaEntity): Promise<number>;
 }

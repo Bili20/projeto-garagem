@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
-import { PegaUmPostePessoaUseCase } from '../pegaUmpostePessoa/pegaUmPostePessoa.use-case';
+import { PegaUmPostePessoaUseCase } from '../pegaUmpostPessoa/pegaUmPostePessoa.use-case';
 import { DeletaPostDTO } from 'src/postagem/models/dtos/deletaPoste.dto';
 import { DeletaMidiaUseCase } from 'src/midia/usueCases/deletaMidia/deletaMidia.use-case';
 

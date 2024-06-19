@@ -5,6 +5,7 @@ import {
   Inject,
   Post,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FilesInterceptor } from '@nestjs/platform-express';
@@ -14,6 +15,7 @@ import { SalvarMidiaPostUsecase } from 'src/midia/usueCases/salvarMidiaPost/salv
 import { CriarPostagemDTO } from 'src/postagem/models/dtos/criarPostagem.dto';
 import { CriaPostUseCase } from './criaPost.use-case';
 import { existsSync, unlinkSync } from 'fs';
+import { JwtAuthGuard } from 'src/autenticacao/guards/jwt.guard';
 
 @Controller('postar')
 export class CriaPostController {
@@ -22,6 +24,7 @@ export class CriaPostController {
   @Inject(SalvarMidiaPostUsecase)
   private readonly salvarMidiaUsecase: SalvarMidiaPostUsecase;
 
+  @UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FilesInterceptor('files', null, {
       limits: { fileSize: 10 * 1024 * 1024 },

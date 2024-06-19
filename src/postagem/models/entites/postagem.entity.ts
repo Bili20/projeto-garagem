@@ -21,6 +21,15 @@ export class PostagemEntity {
   @Column({ name: 'titulo' })
   titulo: string;
 
+  @Column({ name: 'descricao' })
+  descricao: string;
+
+  @Column({ name: 'valor', nullable: true })
+  valor: number;
+
+  @Column({ name: 'anuncio', default: false })
+  anuncio: boolean;
+
   @Column({
     name: 'data_cadastro',
     type: 'timestamptz',

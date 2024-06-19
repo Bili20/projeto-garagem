@@ -1,10 +1,15 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PessoaEntity } from 'src/pessoa/models/entities/pessoa.entity';
-import { ValidaUsuarioUseCase } from './useCases/validaUsuario/validaUsuario.use-case';
+import { PessoaRepo } from 'src/pessoa/repository/typeorm/pessoaRepo';
+import { BuscaPorEmailUseCase } from 'src/pessoa/useCases/buscaPorEmail/buscaPorEmail.use-case';
 import { AutenticacaoRepo } from './repository/autenticacaoRepo';
-import { PassportModule } from '@nestjs/passport';
-import { JwtModule } from '@nestjs/jwt';
+import { LoginController } from './useCases/login/login.controller';
+import { LoginUseCase } from './useCases/login/login.use-case';
+import { ValidaUsuarioUseCase } from './useCases/validaUsuario/validaUsuario.use-case';
+import { JwtStrategy } from './strategy/jwt.strategy';
 @Module({
   imports: [
     TypeOrmModule.forFeature([PessoaEntity]),
@@ -15,10 +20,15 @@ import { JwtModule } from '@nestjs/jwt';
     }),
   ],
   providers: [
+    LoginUseCase,
     ValidaUsuarioUseCase,
     AutenticacaoRepo,
     { provide: 'IAutenticacaoRepo', useExisting: AutenticacaoRepo },
+    BuscaPorEmailUseCase,
+    PessoaRepo,
+    { provide: 'IPessoaRepo', useExisting: PessoaRepo },
+    JwtStrategy,
   ],
-  controllers: [],
+  controllers: [LoginController],
 })
 export class AutenticacaoModule {}

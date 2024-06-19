@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { IAutenticacaoRepo } from '../../models/interfaces/autenticacaoRepo.interface';
 import { LoginDTO } from '../../models/dtos/login.dto';
 const bcrypt = require('bcrypt');
@@ -9,11 +9,14 @@ export class ValidaUsuarioUseCase {
   private readonly AutenticacaoRepo: IAutenticacaoRepo;
 
   async execute({ email, senha }: LoginDTO) {
+    let decrypt;
     const pessoa = await this.AutenticacaoRepo.buscaPorEmail(email);
-    const decrypt = bcrypt.compareSync(senha, pessoa.senha);
+    if (pessoa) {
+      decrypt = bcrypt.compareSync(senha, pessoa.senha);
+    }
     if (decrypt) {
       return pessoa;
     }
-    return null;
+    throw new UnauthorizedException({ messgae: 'email ou senha incorreto' });
   }
 }
