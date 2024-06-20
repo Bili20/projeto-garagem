@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class AtualizaPessoaDTO {
   @IsString()
@@ -20,6 +20,10 @@ export class AtualizaPessoaDTO {
   @IsOptional()
   @IsNotEmpty()
   sexo: string;
+
+  @IsNumber()
+  @IsOptional()
+  postGratuito: number;
 
   @IsString()
   @IsOptional()

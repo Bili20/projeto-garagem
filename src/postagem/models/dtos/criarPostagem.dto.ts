@@ -16,7 +16,7 @@ export class CriarPostagemDTO {
   @IsOptional()
   @IsNumber()
   @Type(() => Number)
-  idPessoa: number;
+  idPessoa?: number;
 
   @IsOptional()
   @Type(() => Number)

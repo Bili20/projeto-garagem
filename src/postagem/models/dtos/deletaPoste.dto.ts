@@ -4,8 +4,4 @@ export class DeletaPostDTO {
   @IsNumber()
   @IsNotEmpty()
   id: number;
-
-  @IsNumber()
-  @IsNotEmpty()
-  idPessoa: number;
 }

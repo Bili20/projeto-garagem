@@ -13,6 +13,7 @@ import { MidiaEntity } from 'src/midia/models/entities/midia.entity';
 import { AtualizaMidiaUseCase } from 'src/midia/usueCases/ataulizaMidia/atualizaMidia.use-case';
 import { AtualizaCadastroUseCase } from './useCases/atualizaCadastro/atualizaCadastro.use-case';
 import { AtualizaCadastroController } from './useCases/atualizaCadastro/ataulizaCadastro.controller';
+import { BuscaUmaPessoaController } from './useCases/buscaUmaPessoa/buscaUmaPessoa.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([PessoaEntity, MidiaEntity])],
@@ -32,6 +33,7 @@ import { AtualizaCadastroController } from './useCases/atualizaCadastro/atauliza
     PessoaCadastroController,
     BuscaPessoasController,
     AtualizaCadastroController,
+    BuscaUmaPessoaController,
   ],
 })
 export class PessoaModule {}

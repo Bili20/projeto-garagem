@@ -50,6 +50,9 @@ export class PessoaEntity {
   @Column({ name: 'senha' })
   senha: string;
 
+  @Column({ name: 'post_gratuito', default: 3 })
+  postGratuito: number;
+
   @OneToOne(() => EnderecoEntity, (endereco: EnderecoEntity) => endereco.pessoa)
   endereco: EnderecoEntity;
 

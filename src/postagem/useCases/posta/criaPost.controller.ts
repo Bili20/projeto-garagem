@@ -4,6 +4,7 @@ import {
   HttpException,
   Inject,
   Post,
+  Req,
   UploadedFiles,
   UseGuards,
   UseInterceptors,
@@ -16,6 +17,7 @@ import { CriarPostagemDTO } from 'src/postagem/models/dtos/criarPostagem.dto';
 import { CriaPostUseCase } from './criaPost.use-case';
 import { existsSync, unlinkSync } from 'fs';
 import { JwtAuthGuard } from 'src/autenticacao/guards/jwt.guard';
+import { Request } from 'express';
 
 @Controller('postar')
 export class CriaPostController {
@@ -42,17 +44,19 @@ export class CriaPostController {
   )
   @Post()
   async criar(
+    @Req() req: Request,
     @Body() param: CriarPostagemDTO,
     @UploadedFiles() files: Array<Express.Multer.File>,
   ) {
     try {
-      const post = await this.criaPostUseCase.execute(param);
+      const post = await this.criaPostUseCase.execute(param, req);
       files.map(async (file) => {
         await this.salvarMidiaUsecase.execute({
-          idPostagem: post.id,
+          idPostagem: post.data.id,
           nome: file.filename,
         });
       });
+      return post;
     } catch (e) {
       for (const file of files) {
         if (existsSync('files/posts/' + file.filename)) {

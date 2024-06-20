@@ -17,6 +17,6 @@ export class ValidaUsuarioUseCase {
     if (decrypt) {
       return pessoa;
     }
-    throw new UnauthorizedException({ messgae: 'email ou senha incorreto' });
+    throw new UnauthorizedException({ message: 'email ou senha incorreto' });
   }
 }

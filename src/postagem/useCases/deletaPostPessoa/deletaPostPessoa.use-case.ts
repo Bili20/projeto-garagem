@@ -8,6 +8,8 @@ import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.inter
 import { PegaUmPostePessoaUseCase } from '../pegaUmpostPessoa/pegaUmPostePessoa.use-case';
 import { DeletaPostDTO } from 'src/postagem/models/dtos/deletaPoste.dto';
 import { DeletaMidiaUseCase } from 'src/midia/usueCases/deletaMidia/deletaMidia.use-case';
+import { Request } from 'express';
+import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-case';
 
 @Injectable()
 export class DeletaPostePessoaUseCase {
@@ -17,11 +19,13 @@ export class DeletaPostePessoaUseCase {
   private readonly pegaUmPostePessoaUseCase: PegaUmPostePessoaUseCase;
   @Inject(DeletaMidiaUseCase)
   private readonly deletaMidiaUseCase: DeletaMidiaUseCase;
+  @Inject(UsuarioAtualUseCase)
+  private readonly usuarioAtualUseCase: UsuarioAtualUseCase;
 
-  async execute({ id, idPessoa }: DeletaPostDTO) {
+  async execute({ id }: DeletaPostDTO, req: Request) {
     try {
       const post = await this.pegaUmPostePessoaUseCase.execute(id);
-
+      const idPessoa = (await this.usuarioAtualUseCase.execute(req)).id;
       if (post.idPessoa == idPessoa) {
         await this.deletaMidiaUseCase.execute(post.id);
         return await this.postagemRepo.deletaPost(post);

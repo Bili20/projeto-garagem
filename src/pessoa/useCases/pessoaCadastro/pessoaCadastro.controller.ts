@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Body,
   Controller,
+  HttpException,
   Inject,
   Post,
   UploadedFile,
@@ -56,7 +57,10 @@ export class PessoaCadastroController {
           unlinkSync('files/perfil/' + file.filename);
         }
       }
-      throw new BadRequestException({ message: 'Ocorreu um erro ao cadastar' });
+      throw new HttpException(
+        e.response ?? 'Erro ao cadastrar',
+        e.status ?? 400,
+      );
     }
   }
 }

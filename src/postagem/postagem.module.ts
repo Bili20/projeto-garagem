@@ -15,9 +15,17 @@ import { DeletaPostPessoaController } from './useCases/deletaPostPessoa/deletaPo
 import { PegaUmPostePessoaUseCase } from './useCases/pegaUmpostPessoa/pegaUmPostePessoa.use-case';
 import { PegaPostesUseCase } from './useCases/pegaPosts/pegaPosts.use-case';
 import { PegaPostesController } from './useCases/pegaPosts/pegaPosts.controller';
+import { DiscontaPostGratuitoUseCase } from 'src/pessoa/useCases/discontaPost/discontaPost.use-case';
+import { PessoaRepo } from 'src/pessoa/repository/typeorm/pessoaRepo';
+import { PessoaEntity } from 'src/pessoa/models/entities/pessoa.entity';
+import { BuscaUmaPEssoaUseCase } from 'src/pessoa/useCases/buscaUmaPessoa/buscaUmaPessoa.use-case';
+import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-case';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PostagemEntity, MidiaEntity])],
+  imports: [
+    TypeOrmModule.forFeature([PostagemEntity, MidiaEntity, PessoaEntity]),
+  ],
   providers: [
     CriaPostUseCase,
     PegarPostesPessoaUseCase,
@@ -30,6 +38,12 @@ import { PegaPostesController } from './useCases/pegaPosts/pegaPosts.controller'
     DeletaMidiaUseCase,
     MidiaRepo,
     { provide: 'IMidiaRepo', useExisting: MidiaRepo },
+    DiscontaPostGratuitoUseCase,
+    BuscaUmaPEssoaUseCase,
+    PessoaRepo,
+    { provide: 'IPessoaRepo', useExisting: PessoaRepo },
+    UsuarioAtualUseCase,
+    JwtService,
   ],
   controllers: [
     CriaPostController,

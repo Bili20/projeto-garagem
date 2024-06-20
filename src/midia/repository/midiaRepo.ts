@@ -16,7 +16,7 @@ export class MidiaRepo implements IMidiaRepo {
   }
 
   async deletar(param: MidiaEntity): Promise<void> {
-    await this.midiaRepo.delete(param);
+    await this.midiaRepo.delete(param.id);
   }
 
   async buscaMidias(idPostagem: number): Promise<MidiaEntity[]> {
