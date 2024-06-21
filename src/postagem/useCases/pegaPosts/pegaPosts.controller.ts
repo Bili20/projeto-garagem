@@ -1,6 +1,6 @@
 import { Controller, Get, Inject, Query, UseGuards } from '@nestjs/common';
 import { PegaPostesUseCase } from './pegaPosts.use-case';
-import { PegaPostesDTO } from 'src/postagem/models/dtos/pegaPostes.dto';
+import { PegaPostesDTO } from 'src/postagem/models/dtos/pegaPost.dto';
 import { JwtAuthGuard } from 'src/autenticacao/guards/jwt.guard';
 
 @Controller('posts')

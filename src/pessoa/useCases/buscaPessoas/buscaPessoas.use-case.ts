@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { URLIMAGE } from 'src/constants/constants';
+import { URLIMAGE } from 'src/utils/constants/constants';
 import { IPessoaRepo } from 'src/pessoa/models/interfaces/pessoa.interface';
 
 @Injectable()

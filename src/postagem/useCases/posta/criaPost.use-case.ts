@@ -1,11 +1,12 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { Request } from 'express';
+import { DadosCartaoDTO } from 'src/pagamento/models/dto/validaDados.dto';
+import { EnviaPagamentoUseCase } from 'src/pagamento/useCases/enviaPagamento/enviaPagamento.use-case';
 import { BuscaUmaPEssoaUseCase } from 'src/pessoa/useCases/buscaUmaPessoa/buscaUmaPessoa.use-case';
 import { DiscontaPostGratuitoUseCase } from 'src/pessoa/useCases/discontaPost/discontaPost.use-case';
-import { CriarPostagemDTO } from 'src/postagem/models/dtos/criarPostagem.dto';
+import { CriarPostagemDTO } from 'src/postagem/models/dtos/criarPost.dto';
 import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
 import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-case';
-import { setTimeout } from 'timers/promises';
 
 @Injectable()
 export class CriaPostUseCase {
@@ -17,24 +18,39 @@ export class CriaPostUseCase {
   private readonly usuarioAtualUseCase: UsuarioAtualUseCase;
   @Inject(BuscaUmaPEssoaUseCase)
   private readonly buscaUmaPessoaUseCase: BuscaUmaPEssoaUseCase;
+  @Inject(EnviaPagamentoUseCase)
+  private readonly enviaPagamentoUseCase: EnviaPagamentoUseCase;
 
   async execute(param: CriarPostagemDTO, req: Request) {
     param.status = 'Disponivel';
-    param.idPessoa = (await this.usuarioAtualUseCase.execute(req)).id;
-    const msg = await this.validaPessoaQuatidadePost(param.idPessoa);
+    const usuarioAtual = await this.usuarioAtualUseCase.execute(req);
+    param.idPessoa = usuarioAtual.id;
+    param.dadosCartao.nomePessoa = usuarioAtual.nome;
+    const msg = await this.validaPessoaQuatidadePost(
+      param.idPessoa,
+      param.dadosCartao,
+    );
+
     const data = await this.postagenRepo.criar(param);
     return { msg, data };
   }
 
-  private async validaPessoaQuatidadePost(idPessoa: number) {
+  private async validaPessoaQuatidadePost(
+    idPessoa: number,
+    param: DadosCartaoDTO,
+  ) {
     const pessoa = await this.buscaUmaPessoaUseCase.execute(idPessoa);
     let res;
     if (pessoa.postGratuito == 0) {
-      // aqui vem o metodo de pagamento
-      res = await setTimeout(2000, 'Pronto deu tudo certo!!');
+      res = await this.enviaPagamentoUseCase.execute(param);
+      if (!res['id']) {
+        throw new BadRequestException({
+          message: 'Erro, verifique os dados do seu cartão',
+        });
+      }
     } else {
       await this.discontaPostGratuitoUseCase.execute(idPessoa);
     }
-    return res;
+    return res['id'];
   }
 }

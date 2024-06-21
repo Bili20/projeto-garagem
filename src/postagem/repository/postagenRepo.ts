@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { IPostagenRepo } from '../models/interfaces/postagenRepo.interface';
-import { CriarPostagemDTO } from '../models/dtos/criarPostagem.dto';
+import { CriarPostagemDTO } from '../models/dtos/criarPost.dto';
 import { PostagemEntity } from '../models/entites/postagem.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { PegaPostesDTO } from '../models/dtos/pegaPostes.dto';
+import { PegaPostesDTO } from '../models/dtos/pegaPost.dto';
 
 @Injectable()
 export class PostagenRepo implements IPostagenRepo {

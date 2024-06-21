@@ -1,5 +1,5 @@
-import { CriarPostagemDTO } from '../dtos/criarPostagem.dto';
-import { PegaPostesDTO } from '../dtos/pegaPostes.dto';
+import { CriarPostagemDTO } from '../dtos/criarPost.dto';
+import { PegaPostesDTO } from '../dtos/pegaPost.dto';
 import { PostagemEntity } from '../entites/postagem.entity';
 
 export interface IPostagenRepo {

@@ -13,7 +13,7 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
 import { SalvarMidiaPostUsecase } from 'src/midia/usueCases/salvarMidiaPost/salvarMidia.use-case';
-import { CriarPostagemDTO } from 'src/postagem/models/dtos/criarPostagem.dto';
+import { CriarPostagemDTO } from 'src/postagem/models/dtos/criarPost.dto';
 import { CriaPostUseCase } from './criaPost.use-case';
 import { existsSync, unlinkSync } from 'fs';
 import { JwtAuthGuard } from 'src/autenticacao/guards/jwt.guard';

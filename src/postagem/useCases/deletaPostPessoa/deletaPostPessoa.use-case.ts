@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
 import { PegaUmPostePessoaUseCase } from '../pegaUmpostPessoa/pegaUmPostePessoa.use-case';
-import { DeletaPostDTO } from 'src/postagem/models/dtos/deletaPoste.dto';
+import { DeletaPostDTO } from 'src/postagem/models/dtos/deletaPost.dto';
 import { DeletaMidiaUseCase } from 'src/midia/usueCases/deletaMidia/deletaMidia.use-case';
 import { Request } from 'express';
 import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-case';

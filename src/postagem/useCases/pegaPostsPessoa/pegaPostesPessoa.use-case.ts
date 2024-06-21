@@ -1,6 +1,6 @@
 import { BadRequestException, Inject, Injectable } from '@nestjs/common';
 import { Request } from 'express';
-import { URLIMAGE } from 'src/constants/constants';
+import { URLIMAGE } from 'src/utils/constants/constants';
 import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
 import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-case';
 

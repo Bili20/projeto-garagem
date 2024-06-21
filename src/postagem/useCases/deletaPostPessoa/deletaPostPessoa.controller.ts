@@ -7,7 +7,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { DeletaPostePessoaUseCase } from './deletaPostPessoa.use-case';
-import { DeletaPostDTO } from 'src/postagem/models/dtos/deletaPoste.dto';
+import { DeletaPostDTO } from 'src/postagem/models/dtos/deletaPost.dto';
 import { JwtAuthGuard } from 'src/autenticacao/guards/jwt.guard';
 import { Request } from 'express';
 

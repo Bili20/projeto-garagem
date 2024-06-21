@@ -21,6 +21,7 @@ import { PessoaEntity } from 'src/pessoa/models/entities/pessoa.entity';
 import { BuscaUmaPEssoaUseCase } from 'src/pessoa/useCases/buscaUmaPessoa/buscaUmaPessoa.use-case';
 import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-case';
 import { JwtService } from '@nestjs/jwt';
+import { EnviaPagamentoUseCase } from 'src/pagamento/useCases/enviaPagamento/enviaPagamento.use-case';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { JwtService } from '@nestjs/jwt';
     { provide: 'IPessoaRepo', useExisting: PessoaRepo },
     UsuarioAtualUseCase,
     JwtService,
+    EnviaPagamentoUseCase,
   ],
   controllers: [
     CriaPostController,
