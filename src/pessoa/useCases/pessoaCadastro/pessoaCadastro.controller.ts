@@ -51,6 +51,7 @@ export class PessoaCadastroController {
           idPessoa: pessoa,
         });
       }
+      return pessoa;
     } catch (e) {
       if (file) {
         if (existsSync('files/perfil/' + file.filename)) {
