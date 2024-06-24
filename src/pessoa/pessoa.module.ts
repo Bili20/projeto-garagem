@@ -13,7 +13,10 @@ import { MidiaEntity } from 'src/midia/models/entities/midia.entity';
 import { AtualizaMidiaUseCase } from 'src/midia/usueCases/ataulizaMidia/atualizaMidia.use-case';
 import { AtualizaCadastroUseCase } from './useCases/atualizaCadastro/atualizaCadastro.use-case';
 import { AtualizaCadastroController } from './useCases/atualizaCadastro/ataulizaCadastro.controller';
-import { BuscaUmaPessoaController } from './useCases/buscaUmaPessoa/buscaUmaPessoa.controller';
+import { BuscaInfoPessoaController } from './useCases/buscaInfoPessoa/buscaInfoPessoa.controller';
+import { BuscaInfoPessoaUseCase } from './useCases/buscaInfoPessoa/buscaInfoPessoa.use-case';
+import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-case';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports: [TypeOrmModule.forFeature([PessoaEntity, MidiaEntity])],
@@ -22,18 +25,21 @@ import { BuscaUmaPessoaController } from './useCases/buscaUmaPessoa/buscaUmaPess
     PessoaCadastroUsecase,
     AtualizaCadastroUseCase,
     BuscaPessoasUsecase,
+    BuscaInfoPessoaUseCase,
     PessoaRepo,
     { provide: 'IPessoaRepo', useExisting: PessoaRepo },
     SalvarMidiaPerfilUseCase,
     AtualizaMidiaUseCase,
     MidiaRepo,
     { provide: 'IMidiaRepo', useExisting: MidiaRepo },
+    UsuarioAtualUseCase,
+    JwtService,
   ],
   controllers: [
     PessoaCadastroController,
     BuscaPessoasController,
     AtualizaCadastroController,
-    BuscaUmaPessoaController,
+    BuscaInfoPessoaController,
   ],
 })
 export class PessoaModule {}

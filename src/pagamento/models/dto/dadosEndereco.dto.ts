@@ -1,6 +1,6 @@
-import { IsNumber, IsPostalCode, IsString } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
-export class CadastroEnderecoDTO {
+export class DadosEnderecoDTO {
   @IsString()
   rua: string;
 
@@ -21,7 +21,4 @@ export class CadastroEnderecoDTO {
 
   @IsString()
   cep: string;
-
-  @IsNumber()
-  idPessoa: number;
 }

@@ -5,6 +5,7 @@ import { PostagemEntity } from '../models/entites/postagem.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { PegaPostesDTO } from '../models/dtos/pegaPost.dto';
+import { AtualizaPostDTO } from '../models/dtos/atualizaPost.dto';
 
 @Injectable()
 export class PostagenRepo implements IPostagenRepo {
@@ -23,7 +24,7 @@ export class PostagenRepo implements IPostagenRepo {
     });
   }
 
-  async postes(params: PegaPostesDTO): Promise<PostagemEntity[]> {
+  async buscaPostes(params: PegaPostesDTO): Promise<PostagemEntity[]> {
     return await this.postagemRepo
       .createQueryBuilder('post')
       .select([
@@ -46,11 +47,15 @@ export class PostagenRepo implements IPostagenRepo {
       .getMany();
   }
 
-  async umPoste(id: number): Promise<PostagemEntity> {
+  async buscaUmPoste(id: number): Promise<PostagemEntity> {
     return this.postagemRepo.findOne({ where: { id: id } });
   }
 
   async deletaPost(param: PostagemEntity): Promise<void> {
     await this.postagemRepo.delete(param.id);
+  }
+
+  async atualizar(id: number, param: AtualizaPostDTO): Promise<void> {
+    await this.postagemRepo.update(id, param);
   }
 }

@@ -18,11 +18,17 @@ export class EnderecoEntity {
   @Column({ name: 'bairro' })
   bairro: string;
 
+  @Column({ name: 'rua' })
+  rua: string;
+
+  @Column({ name: 'cidade' })
+  cidade: string;
+
   @Column({ name: 'numero' })
   numero: string;
 
-  @Column({ name: 'logradouro' })
-  logradouro: string;
+  @Column({ name: 'complemento', nullable: true })
+  complemento: string;
 
   @Column({ name: 'uf' })
   uf: string;

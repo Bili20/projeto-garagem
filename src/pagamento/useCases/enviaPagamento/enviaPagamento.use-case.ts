@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { DadosCartaoDTO } from 'src/pagamento/models/dto/validaDados.dto';
+import { Inject, Injectable } from '@nestjs/common';
+import { DadosCartaoDTO } from 'src/pagamento/models/dto/dadosCartao.dto';
 import { KEY } from '../../../utils/constants/constants';
+import { DadosEnderecoDTO } from 'src/pagamento/models/dto/dadosEndereco.dto';
+import { BuscaUmEnderecoPessoaUseCase } from 'src/endereco/useCases/buscaUmEnderecoPessoa/buscaUmEnderecoPessoa.use-case';
 @Injectable()
 export class EnviaPagamentoUseCase {
-  async execute(param: DadosCartaoDTO) {
+  async execute(cartao: DadosCartaoDTO, endereco: DadosEnderecoDTO) {
     let reqs = await fetch('https://sandbox.api.pagseguro.com/orders', {
       method: 'POST',
       headers: {
@@ -13,7 +15,7 @@ export class EnviaPagamentoUseCase {
       body: JSON.stringify({
         reference_id: 'ex-00001',
         customer: {
-          name: param.nomePessoa,
+          name: cartao.nomePessoa,
           email: 'email@test.com',
           tax_id: '12345678909',
           phones: [
@@ -27,22 +29,22 @@ export class EnviaPagamentoUseCase {
         },
         items: [
           {
-            reference_id: 'referencia do item',
-            name: 'nome do item',
+            reference_id: 'item',
+            name: 'venda de garagem',
             quantity: 1,
             unit_amount: 500,
           },
         ],
         shipping: {
           address: {
-            street: 'Avenida Brigadeiro Faria Lima',
-            number: '1384',
-            complement: 'apto 12',
-            locality: 'Pinheiros',
-            city: 'São Paulo',
-            region_code: 'SP',
+            street: endereco.rua,
+            number: endereco.numero,
+            complement: endereco.complemento,
+            locality: endereco.bairro,
+            city: endereco.cidade,
+            region_code: endereco.uf,
             country: 'BRA',
-            postal_code: '01452002',
+            postal_code: endereco.cep,
           },
         },
         notification_urls: ['https://meusite.com/notificacoes'],
@@ -51,7 +53,7 @@ export class EnviaPagamentoUseCase {
             reference_id: 'referencia da cobranca',
             description: 'descricao da cobranca',
             amount: {
-              value: 100,
+              value: 500,
               currency: 'BRL',
             },
             payment_method: {
@@ -59,12 +61,12 @@ export class EnviaPagamentoUseCase {
               installments: 1,
               capture: true,
               card: {
-                number: param.numeroCartao,
-                exp_month: param.expMes,
-                exp_year: param.expAno,
-                security_code: param.codigoSeguranca,
+                number: cartao.numeroCartao,
+                exp_month: cartao.expMes,
+                exp_year: cartao.expAno,
+                security_code: cartao.codigoSeguranca,
                 holder: {
-                  name: param.nomePessoa,
+                  name: cartao.nomePessoa,
                   tax_id: '65544332211',
                 },
                 store: false,

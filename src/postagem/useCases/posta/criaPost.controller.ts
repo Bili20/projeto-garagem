@@ -63,6 +63,7 @@ export class CriaPostController {
           unlinkSync('files/posts/' + file.filename);
         }
       }
+      console.log(e);
       throw new HttpException(
         e.response ?? 'Erro ao fazer post',
         e.status ?? 400,

@@ -15,4 +15,8 @@ export class EnderecoRepo implements IEnderecoRepo {
   async cadastrar(param: CadastroEnderecoDTO): Promise<void> {
     await this.enderecoRepo.save(param);
   }
+
+  async buscaUmEndereco(idPEssoa: number): Promise<EnderecoEntity> {
+    return this.enderecoRepo.findOne({ where: { idPessoa: idPEssoa } });
+  }
 }

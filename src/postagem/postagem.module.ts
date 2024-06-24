@@ -12,7 +12,7 @@ import { PegarPostesPessoaController } from './useCases/pegaPostsPessoa/pegaPost
 import { DeletaMidiaUseCase } from 'src/midia/usueCases/deletaMidia/deletaMidia.use-case';
 import { DeletaPostePessoaUseCase } from './useCases/deletaPostPessoa/deletaPostPessoa.use-case';
 import { DeletaPostPessoaController } from './useCases/deletaPostPessoa/deletaPostPessoa.controller';
-import { PegaUmPostePessoaUseCase } from './useCases/pegaUmpostPessoa/pegaUmPostePessoa.use-case';
+import { BuscaUmPostePessoaUseCase } from './useCases/pegaUmpostPessoa/pegaUmPostePessoa.use-case';
 import { PegaPostesUseCase } from './useCases/pegaPosts/pegaPosts.use-case';
 import { PegaPostesController } from './useCases/pegaPosts/pegaPosts.controller';
 import { DiscontaPostGratuitoUseCase } from 'src/pessoa/useCases/discontaPost/discontaPost.use-case';
@@ -22,16 +22,27 @@ import { BuscaUmaPEssoaUseCase } from 'src/pessoa/useCases/buscaUmaPessoa/buscaU
 import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-case';
 import { JwtService } from '@nestjs/jwt';
 import { EnviaPagamentoUseCase } from 'src/pagamento/useCases/enviaPagamento/enviaPagamento.use-case';
+import { AtualizaPostController } from './useCases/atualizaPost/atualizaPost.controller';
+import { AtualizaPostUseCase } from './useCases/atualizaPost/atualizaPost.use-case';
+import { BuscaUmEnderecoPessoaUseCase } from 'src/endereco/useCases/buscaUmEnderecoPessoa/buscaUmEnderecoPessoa.use-case';
+import { EnderecoRepo } from 'src/endereco/repository/typeorm/enderecoRepo';
+import { EnderecoEntity } from 'src/endereco/models/entities/endedreco.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([PostagemEntity, MidiaEntity, PessoaEntity]),
+    TypeOrmModule.forFeature([
+      PostagemEntity,
+      MidiaEntity,
+      PessoaEntity,
+      EnderecoEntity,
+    ]),
   ],
   providers: [
     CriaPostUseCase,
     PegarPostesPessoaUseCase,
     DeletaPostePessoaUseCase,
-    PegaUmPostePessoaUseCase,
+    BuscaUmPostePessoaUseCase,
+    AtualizaPostUseCase,
     PegaPostesUseCase,
     PostagemRepo,
     { provide: 'IPostagenRepo', useExisting: PostagemRepo },
@@ -46,12 +57,16 @@ import { EnviaPagamentoUseCase } from 'src/pagamento/useCases/enviaPagamento/env
     UsuarioAtualUseCase,
     JwtService,
     EnviaPagamentoUseCase,
+    BuscaUmEnderecoPessoaUseCase,
+    EnderecoRepo,
+    { provide: 'IEnderecoRepo', useExisting: EnderecoRepo },
   ],
   controllers: [
     CriaPostController,
     PegarPostesPessoaController,
     DeletaPostPessoaController,
     PegaPostesController,
+    AtualizaPostController,
   ],
 })
 export class PostagemModule {}

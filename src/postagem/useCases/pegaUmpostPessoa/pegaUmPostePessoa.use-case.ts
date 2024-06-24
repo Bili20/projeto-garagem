@@ -7,13 +7,13 @@ import {
 import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
 
 @Injectable()
-export class PegaUmPostePessoaUseCase {
+export class BuscaUmPostePessoaUseCase {
   @Inject('IPostagenRepo')
   private readonly postagenRepo: IPostagenRepo;
 
   async execute(id: number) {
     try {
-      const post = await this.postagenRepo.umPoste(id);
+      const post = await this.postagenRepo.buscaUmPoste(id);
       if (!post) {
         throw new BadRequestException({ message: 'Postagem não encontrada' });
       }

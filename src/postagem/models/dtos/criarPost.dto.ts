@@ -6,7 +6,7 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { DadosCartaoDTO } from 'src/pagamento/models/dto/validaDados.dto';
+import { DadosCartaoDTO } from 'src/pagamento/models/dto/dadosCartao.dto';
 
 export class CriarPostagemDTO {
   @IsString()
@@ -38,5 +38,5 @@ export class CriarPostagemDTO {
   anuncio: boolean;
 
   @IsOptional()
-  dadosCartao: DadosCartaoDTO;
+  dadosCartao?: DadosCartaoDTO;
 }

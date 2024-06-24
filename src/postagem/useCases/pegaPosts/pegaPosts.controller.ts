@@ -3,7 +3,7 @@ import { PegaPostesUseCase } from './pegaPosts.use-case';
 import { PegaPostesDTO } from 'src/postagem/models/dtos/pegaPost.dto';
 import { JwtAuthGuard } from 'src/autenticacao/guards/jwt.guard';
 
-@Controller('posts')
+@Controller('todos/posts')
 export class PegaPostesController {
   @Inject(PegaPostesUseCase)
   private readonly pegaPostesUseCase: PegaPostesUseCase;

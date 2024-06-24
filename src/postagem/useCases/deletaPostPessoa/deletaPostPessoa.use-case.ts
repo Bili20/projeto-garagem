@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
-import { PegaUmPostePessoaUseCase } from '../pegaUmpostPessoa/pegaUmPostePessoa.use-case';
+import { BuscaUmPostePessoaUseCase } from '../pegaUmpostPessoa/pegaUmPostePessoa.use-case';
 import { DeletaPostDTO } from 'src/postagem/models/dtos/deletaPost.dto';
 import { DeletaMidiaUseCase } from 'src/midia/usueCases/deletaMidia/deletaMidia.use-case';
 import { Request } from 'express';
@@ -15,8 +15,8 @@ import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-cas
 export class DeletaPostePessoaUseCase {
   @Inject('IPostagenRepo')
   private readonly postagemRepo: IPostagenRepo;
-  @Inject(PegaUmPostePessoaUseCase)
-  private readonly pegaUmPostePessoaUseCase: PegaUmPostePessoaUseCase;
+  @Inject(BuscaUmPostePessoaUseCase)
+  private readonly pegaUmPostePessoaUseCase: BuscaUmPostePessoaUseCase;
   @Inject(DeletaMidiaUseCase)
   private readonly deletaMidiaUseCase: DeletaMidiaUseCase;
   @Inject(UsuarioAtualUseCase)
