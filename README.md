@@ -1,8 +1,8 @@
-### Rotas
+# Rotas
 
-## Login
+# Login
 
-# baseurl/login
+## baseurl/login
 
 - body
 
@@ -11,27 +11,9 @@
   senha: string
 ```
 
-## Pessoa
+# Pessoa
 
-# baseurl/pessoa/cadastro
-
-- multipart-form
-
-```
-  nome: string
-  documeto: string
-  dataNacimento: Date
-  sexo: string
-  email: string
-  senha: string
-  file: file
-```
-
-# baseurl/pessoas
-
-# baseurl/informacoes/pessoa
-
-# baseurl/atauliza/informacoes/:id
+## baseurl/pessoa/cadastro
 
 - multipart-form
 
@@ -45,9 +27,27 @@
   file: file
 ```
 
-## Endereco
+## baseurl/pessoas
 
-# baseurl/endereco/cadastro
+## baseurl/informacoes/pessoa
+
+## baseurl/atauliza/informacoes/:id
+
+- multipart-form
+
+```
+  nome: string
+  documeto: string
+  dataNacimento: Date
+  sexo: string
+  email: string
+  senha: string
+  file: file
+```
+
+# Endereco
+
+## baseurl/endereco/cadastro
 
 - body
 
@@ -62,9 +62,9 @@
   idPessoa: number
 ```
 
-## Postagem
+# Postagem
 
-# baseurl/atualiza/post/:id
+## baseurl/atualiza/post/:id
 
 - parametro
 
@@ -80,7 +80,7 @@
   valor: number
 ```
 
-# baseurl/deleta/post
+## baseurl/deleta/post
 
 - body
 
@@ -88,7 +88,7 @@
   id: number
 ```
 
-# baseurl/todos/posts
+## baseurl/todos/posts
 
 - query
   ```
@@ -96,7 +96,7 @@
   quantidade: number
   ```
 
-# baseurl/post/:id
+## baseurl/post/:id
 
 - parametro
 
@@ -104,14 +104,27 @@
   id: number
 ```
 
-# baseurl/pegar/posts/pessoa
+## baseurl/pegar/posts/pessoa
 
-# baseurl/postar
+## baseurl/postar
 
 - parametro
 
 ```
   id: number
+```
+
+- multipart-form
+
+```
+titulo: string
+descricao: string
+valor: number
+files: file (pode ser informado varios campos files)
+dadosCartao[numeroCartao]: string
+dadosCartao[expMes]: string
+dadosCartao[expAno]: string
+dadosCartao[codigoSeguranca]: string
 ```
 
 ## Aviso: necessário dentro da pasta utils criar uma pasta constants com um arquivo constants.ts com essas variaveis:
