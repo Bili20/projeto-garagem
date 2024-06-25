@@ -5,6 +5,7 @@ import {
   Injectable,
 } from '@nestjs/common';
 import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
+import { URLIMAGE } from 'src/utils/constants/constants';
 
 @Injectable()
 export class PegaUmPosteUseCase {
@@ -16,6 +17,9 @@ export class PegaUmPosteUseCase {
       const post = await this.postagenRepo.buscaUmPoste(id);
       if (!post) {
         throw new BadRequestException({ message: 'Postagem não encontrada' });
+      }
+      for (const midia of post.midia) {
+        midia.nome = URLIMAGE + '/files/posts/' + midia.nome;
       }
       return post;
     } catch (e) {

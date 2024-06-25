@@ -42,6 +42,7 @@ export class CriaPostUseCase {
       pagamento = await this.discontaValorCartao(param.dadosCartao, endereco);
     }
     const data = await this.postagenRepo.criar(param);
+    delete data['dadosCartao'];
     return { pagamento, data };
   }
 

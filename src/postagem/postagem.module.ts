@@ -27,6 +27,7 @@ import { AtualizaPostUseCase } from './useCases/atualizaPost/atualizaPost.use-ca
 import { BuscaUmEnderecoPessoaUseCase } from 'src/endereco/useCases/buscaUmEnderecoPessoa/buscaUmEnderecoPessoa.use-case';
 import { EnderecoRepo } from 'src/endereco/repository/typeorm/enderecoRepo';
 import { EnderecoEntity } from 'src/endereco/models/entities/endedreco.entity';
+import { PegaUmPostController } from './useCases/pegaUmPost/pegaUmPost.controller';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { EnderecoEntity } from 'src/endereco/models/entities/endedreco.entity';
     PegaUmPosteUseCase,
     AtualizaPostUseCase,
     PegaPostesUseCase,
+    PegaUmPosteUseCase,
     PostagemRepo,
     { provide: 'IPostagenRepo', useExisting: PostagemRepo },
     SalvarMidiaPostUsecase,
@@ -67,6 +69,7 @@ import { EnderecoEntity } from 'src/endereco/models/entities/endedreco.entity';
     DeletaPostPessoaController,
     PegaPostesController,
     AtualizaPostController,
+    PegaUmPostController,
   ],
 })
 export class PostagemModule {}

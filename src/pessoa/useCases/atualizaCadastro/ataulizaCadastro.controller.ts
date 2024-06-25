@@ -5,6 +5,7 @@ import {
   Inject,
   Param,
   Patch,
+  Req,
   UploadedFile,
   UseGuards,
   UseInterceptors,
@@ -17,8 +18,9 @@ import { AtualizaPessoaDTO } from 'src/pessoa/models/dtos/atualizaPessoa.dto';
 import { AtualizaCadastroUseCase } from './atualizaCadastro.use-case';
 import { existsSync, unlinkSync } from 'fs';
 import { JwtAuthGuard } from 'src/autenticacao/guards/jwt.guard';
+import { Request } from 'express';
 
-@Controller('atauliza/informacoes')
+@Controller('atualiza/informacoes')
 export class AtualizaCadastroController {
   @Inject(AtualizaCadastroUseCase)
   private readonly atualizaCadastroUseCase: AtualizaCadastroUseCase;
@@ -41,19 +43,20 @@ export class AtualizaCadastroController {
       }),
     }),
   )
-  @Patch(':id')
+  @Patch()
   async atualizaCadastro(
-    @Param('id') id: number,
+    @Req() req: Request,
     @Body() param: AtualizaPessoaDTO,
     @UploadedFile() file?: Express.Multer.File,
   ) {
     try {
-      const data = await this.atualizaCadastroUseCase.execute(id, param);
+      const data = await this.atualizaCadastroUseCase.execute(req, param);
+
       const idMidia = data.midia?.id;
       if (file) {
         await this.atualizaMidiaUseCase.execute(idMidia, {
           nome: file.filename,
-          idPessoa: id,
+          idPessoa: data.id,
         });
       }
     } catch (e) {
@@ -62,6 +65,7 @@ export class AtualizaCadastroController {
           unlinkSync('files/perfil/' + file.filename);
         }
       }
+      console.log(e);
       throw new BadRequestException({ message: 'Erro ao atualizar dados' });
     }
   }

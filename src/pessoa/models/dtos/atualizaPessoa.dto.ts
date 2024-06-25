@@ -1,4 +1,12 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export class AtualizaPessoaDTO {
   @IsString()
@@ -29,4 +37,8 @@ export class AtualizaPessoaDTO {
   @IsOptional()
   @IsNotEmpty()
   email: string;
+
+  @IsOptional()
+  @IsNotEmpty()
+  telefone: string;
 }

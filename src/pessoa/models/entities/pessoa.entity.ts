@@ -47,6 +47,9 @@ export class PessoaEntity {
   @Column({ unique: true, name: 'email' })
   email: string;
 
+  @Column({ unique: true, name: 'telefone', nullable: true })
+  telefone: string;
+
   @Column({ name: 'senha' })
   senha: string;
 

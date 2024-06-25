@@ -48,7 +48,10 @@ export class PostagenRepo implements IPostagenRepo {
   }
 
   async buscaUmPoste(id: number): Promise<PostagemEntity> {
-    return this.postagemRepo.findOne({ where: { id: id } });
+    return this.postagemRepo.findOne({
+      where: { id: id },
+      relations: { midia: true },
+    });
   }
 
   async deletaPost(param: PostagemEntity): Promise<void> {

@@ -23,6 +23,7 @@
   dataNacimento: Date
   sexo: string
   email: string
+  telefone: number
   senha: string
   file: file
 ```
@@ -41,6 +42,7 @@
   dataNacimento: Date
   sexo: string
   email: string
+  telefone: number
   senha: string
   file: file
 ```

@@ -1,4 +1,12 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { Type } from 'class-transformer';
+import {
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  MaxLength,
+  MinLength,
+} from 'class-validator';
 
 export class PessoaCadastroDTO {
   @IsString()
@@ -15,6 +23,9 @@ export class PessoaCadastroDTO {
 
   @IsEmail()
   email: string;
+
+  @IsString()
+  telefone: string;
 
   @IsString()
   @IsNotEmpty()

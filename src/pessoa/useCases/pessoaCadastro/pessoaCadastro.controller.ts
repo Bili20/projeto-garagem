@@ -58,6 +58,7 @@ export class PessoaCadastroController {
           unlinkSync('files/perfil/' + file.filename);
         }
       }
+      console.log(e);
       throw new HttpException(
         e.response ?? 'Erro ao cadastrar',
         e.status ?? 400,
