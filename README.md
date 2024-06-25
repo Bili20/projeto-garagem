@@ -116,6 +116,10 @@
 
 ## Aviso: necessário dentro da pasta utils criar uma pasta constants com um arquivo constants.ts com essas variaveis:
 
-# export const URLIMAGE = 'sua url';
+```
+export const URLIMAGE = 'sua url';
+```
 
-# export const KEY ='token do PagSeguro';
+```
+export const KEY ='token do PagSeguro';
+```
