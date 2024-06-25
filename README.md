@@ -2,95 +2,98 @@
 
 ## Login
 
-- baseurl/login
+# baseurl/login
 
-# body
+- body
 
-    email: string
-    senha: string
+  email: string
+  senha: string
 
 ## Pessoa
 
-- baseurl/pessoa/cadastro
+# baseurl/pessoa/cadastro
 
-# multipart-form
+- multipart-form
 
-    nome: string
-    documeto: string
-    dataNacimento: Date
-    sexo: string
-    email: string
-    senha: string
-    file: file
+  nome: string
+  documeto: string
+  dataNacimento: Date
+  sexo: string
+  email: string
+  senha: string
+  file: file
 
-- baseurl/pessoas
-- baseurl/informacoes/pessoa
-- baseurl/atauliza/informacoes/:id
+# baseurl/pessoas
 
-# multipart-form
+# baseurl/informacoes/pessoa
 
-    nome: string
-    documeto: string
-    dataNacimento: Date
-    sexo: string
-    email: string
-    senha: string
-    file: file
+# baseurl/atauliza/informacoes/:id
+
+- multipart-form
+
+  nome: string
+  documeto: string
+  dataNacimento: Date
+  sexo: string
+  email: string
+  senha: string
+  file: file
 
 ## Endereco
 
-- baseurl/endereco/cadastro
+# baseurl/endereco/cadastro
 
-# body
+- body
 
-    cep: string
-    bairro: string
-    cidade: string
-    rua: string
-    numero: string
-    complemento: string
-    uf: string
-    idPessoa: number
+  cep: string
+  bairro: string
+  cidade: string
+  rua: string
+  numero: string
+  complemento: string
+  uf: string
+  idPessoa: number
 
 ## Postagem
 
-- baseurl/atualiza/post/:id
+# baseurl/atualiza/post/:id
 
-# parametro
+- parametro
 
-    id: number
+  id: number
 
-# body
+- body
 
-    titulo: string
-    descricao: string
-    valor: number
+  titulo: string
+  descricao: string
+  valor: number
 
-- baseurl/deleta/post
+# baseurl/deleta/post
 
-# body
+- body
 
-    id: number
+  id: number
 
-- baseurl/todos/posts
+# baseurl/todos/posts
 
-# query
+- query
 
-    pagina: number
-    quantidade: number
+  pagina: number
+  quantidade: number
 
-- baseurl/post/:id
+# baseurl/post/:id
 
-# parametro
+- parametro
 
-    id: number
+  id: number
 
-- baseurl/pegar/posts/pessoa
-- baseurl/postar
+# baseurl/pegar/posts/pessoa
 
-# parametro
+# baseurl/postar
 
-    id: number
+- parametro
+
+  id: number
 
 ## Aviso: necessário dentro da pasta utils criar uma pasta constants com um arquivo constants.ts com essas variaveis:
 
