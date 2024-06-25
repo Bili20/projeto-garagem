@@ -7,7 +7,7 @@ import {
 import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
 
 @Injectable()
-export class BuscaUmPostePessoaUseCase {
+export class PegaUmPosteUseCase {
   @Inject('IPostagenRepo')
   private readonly postagenRepo: IPostagenRepo;
 

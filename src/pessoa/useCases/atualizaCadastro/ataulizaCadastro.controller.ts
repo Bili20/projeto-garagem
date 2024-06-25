@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   UploadedFile,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -15,6 +16,7 @@ import { AtualizaMidiaUseCase } from 'src/midia/usueCases/ataulizaMidia/atualiza
 import { AtualizaPessoaDTO } from 'src/pessoa/models/dtos/atualizaPessoa.dto';
 import { AtualizaCadastroUseCase } from './atualizaCadastro.use-case';
 import { existsSync, unlinkSync } from 'fs';
+import { JwtAuthGuard } from 'src/autenticacao/guards/jwt.guard';
 
 @Controller('atauliza/informacoes')
 export class AtualizaCadastroController {
@@ -23,6 +25,7 @@ export class AtualizaCadastroController {
   @Inject(AtualizaMidiaUseCase)
   private readonly atualizaMidiaUseCase: AtualizaMidiaUseCase;
 
+  @UseGuards(JwtAuthGuard)
   @UseInterceptors(
     FileInterceptor('file', {
       limits: { fileSize: 10 * 1024 * 1024 },

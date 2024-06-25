@@ -7,7 +7,7 @@ import {
 import { BuscaUmaPEssoaUseCase } from 'src/pessoa/useCases/buscaUmaPessoa/buscaUmaPessoa.use-case';
 import { AtualizaPostDTO } from 'src/postagem/models/dtos/atualizaPost.dto';
 import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
-import { BuscaUmPostePessoaUseCase } from '../pegaUmpostPessoa/pegaUmPostePessoa.use-case';
+import { PegaUmPosteUseCase } from '../pegaUmPost/pegaUmPoste.use-case';
 import { Request } from 'express';
 import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-case';
 
@@ -15,8 +15,8 @@ import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-cas
 export class AtualizaPostUseCase {
   @Inject('IPostagenRepo')
   private readonly postagenRepo: IPostagenRepo;
-  @Inject(BuscaUmPostePessoaUseCase)
-  private readonly buscaUmaPostePessoaUseCase: BuscaUmPostePessoaUseCase;
+  @Inject(PegaUmPosteUseCase)
+  private readonly buscaUmaPostePessoaUseCase: PegaUmPosteUseCase;
   @Inject(UsuarioAtualUseCase)
   private readonly usuarioAtualUseCase: UsuarioAtualUseCase;
 

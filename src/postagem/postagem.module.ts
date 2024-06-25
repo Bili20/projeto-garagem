@@ -12,7 +12,7 @@ import { PegarPostesPessoaController } from './useCases/pegaPostsPessoa/pegaPost
 import { DeletaMidiaUseCase } from 'src/midia/usueCases/deletaMidia/deletaMidia.use-case';
 import { DeletaPostePessoaUseCase } from './useCases/deletaPostPessoa/deletaPostPessoa.use-case';
 import { DeletaPostPessoaController } from './useCases/deletaPostPessoa/deletaPostPessoa.controller';
-import { BuscaUmPostePessoaUseCase } from './useCases/pegaUmpostPessoa/pegaUmPostePessoa.use-case';
+import { PegaUmPosteUseCase } from './useCases/pegaUmPost/pegaUmPoste.use-case';
 import { PegaPostesUseCase } from './useCases/pegaPosts/pegaPosts.use-case';
 import { PegaPostesController } from './useCases/pegaPosts/pegaPosts.controller';
 import { DiscontaPostGratuitoUseCase } from 'src/pessoa/useCases/discontaPost/discontaPost.use-case';
@@ -41,7 +41,7 @@ import { EnderecoEntity } from 'src/endereco/models/entities/endedreco.entity';
     CriaPostUseCase,
     PegarPostesPessoaUseCase,
     DeletaPostePessoaUseCase,
-    BuscaUmPostePessoaUseCase,
+    PegaUmPosteUseCase,
     AtualizaPostUseCase,
     PegaPostesUseCase,
     PostagemRepo,
