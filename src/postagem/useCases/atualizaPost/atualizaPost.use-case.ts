@@ -6,17 +6,17 @@ import {
 } from '@nestjs/common';
 import { BuscaUmaPEssoaUseCase } from 'src/pessoa/useCases/buscaUmaPessoa/buscaUmaPessoa.use-case';
 import { AtualizaPostDTO } from 'src/postagem/models/dtos/atualizaPost.dto';
-import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
-import { PegaUmPosteUseCase } from '../pegaUmPost/pegaUmPoste.use-case';
+import { IPostagemRepo } from 'src/postagem/models/interfaces/postagemRepo.interface';
+import { PegaUmPostUseCase } from '../pegaUmPost/pegaUmPoste.use-case';
 import { Request } from 'express';
 import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-case';
 
 @Injectable()
 export class AtualizaPostUseCase {
   @Inject('IPostagenRepo')
-  private readonly postagenRepo: IPostagenRepo;
-  @Inject(PegaUmPosteUseCase)
-  private readonly buscaUmaPostePessoaUseCase: PegaUmPosteUseCase;
+  private readonly postagenRepo: IPostagemRepo;
+  @Inject(PegaUmPostUseCase)
+  private readonly buscaUmaPostePessoaUseCase: PegaUmPostUseCase;
   @Inject(UsuarioAtualUseCase)
   private readonly usuarioAtualUseCase: UsuarioAtualUseCase;
 

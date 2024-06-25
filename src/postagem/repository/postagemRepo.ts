@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { IPostagenRepo } from '../models/interfaces/postagenRepo.interface';
+import { IPostagemRepo as IPostagemRepo } from '../models/interfaces/postagemRepo.interface';
 import { CriarPostagemDTO } from '../models/dtos/criarPost.dto';
 import { PostagemEntity } from '../models/entites/postagem.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,7 +8,7 @@ import { PegaPostesDTO } from '../models/dtos/pegaPost.dto';
 import { AtualizaPostDTO } from '../models/dtos/atualizaPost.dto';
 
 @Injectable()
-export class PostagenRepo implements IPostagenRepo {
+export class PostagemRepo implements IPostagemRepo {
   constructor(
     @InjectRepository(PostagemEntity)
     private readonly postagemRepo: Repository<PostagemEntity>,
@@ -17,14 +17,14 @@ export class PostagenRepo implements IPostagenRepo {
     return await this.postagemRepo.save(param);
   }
 
-  async postesPessoa(idPessoa: number): Promise<PostagemEntity[]> {
+  async postsPessoa(idPessoa: number): Promise<PostagemEntity[]> {
     return await this.postagemRepo.find({
       where: { idPessoa: idPessoa },
       relations: { midia: true },
     });
   }
 
-  async buscaPostes(params: PegaPostesDTO): Promise<PostagemEntity[]> {
+  async buscaPosts(params: PegaPostesDTO): Promise<PostagemEntity[]> {
     return await this.postagemRepo
       .createQueryBuilder('post')
       .select([
@@ -47,10 +47,10 @@ export class PostagenRepo implements IPostagenRepo {
       .getMany();
   }
 
-  async buscaUmPoste(id: number): Promise<PostagemEntity> {
+  async buscaUmPost(id: number): Promise<PostagemEntity> {
     return this.postagemRepo.findOne({
       where: { id: id },
-      relations: { midia: true },
+      relations: { pessoa: true, midia: true },
     });
   }
 

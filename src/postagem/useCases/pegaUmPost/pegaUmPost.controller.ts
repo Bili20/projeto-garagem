@@ -1,10 +1,10 @@
 import { Controller, Get, Inject, Param, Post } from '@nestjs/common';
-import { PegaUmPosteUseCase } from './pegaUmPoste.use-case';
+import { PegaUmPostUseCase } from './pegaUmPoste.use-case';
 
 @Controller('post')
 export class PegaUmPostController {
-  @Inject(PegaUmPosteUseCase)
-  private readonly pegaUmPostUseCase: PegaUmPosteUseCase;
+  @Inject(PegaUmPostUseCase)
+  private readonly pegaUmPostUseCase: PegaUmPostUseCase;
 
   @Get(':id')
   pegaUmPost(@Param('id') id: number) {

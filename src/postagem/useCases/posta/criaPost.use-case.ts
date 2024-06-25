@@ -7,13 +7,13 @@ import { EnviaPagamentoUseCase } from 'src/pagamento/useCases/enviaPagamento/env
 import { BuscaUmaPEssoaUseCase } from 'src/pessoa/useCases/buscaUmaPessoa/buscaUmaPessoa.use-case';
 import { DiscontaPostGratuitoUseCase } from 'src/pessoa/useCases/discontaPost/discontaPost.use-case';
 import { CriarPostagemDTO } from 'src/postagem/models/dtos/criarPost.dto';
-import { IPostagenRepo } from 'src/postagem/models/interfaces/postagenRepo.interface';
+import { IPostagemRepo } from 'src/postagem/models/interfaces/postagemRepo.interface';
 import { UsuarioAtualUseCase } from 'src/utils/usuarioAtual/usuarioAtual.use-case';
 
 @Injectable()
 export class CriaPostUseCase {
   @Inject('IPostagenRepo')
-  private readonly postagenRepo: IPostagenRepo;
+  private readonly postagenRepo: IPostagemRepo;
   @Inject(DiscontaPostGratuitoUseCase)
   private readonly discontaPostGratuitoUseCase: DiscontaPostGratuitoUseCase;
   @Inject(UsuarioAtualUseCase)
