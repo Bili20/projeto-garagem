@@ -6,8 +6,10 @@
 
 - body
 
+```
   email: string
   senha: string
+```
 
 ## Pessoa
 
@@ -15,6 +17,7 @@
 
 - multipart-form
 
+```
   nome: string
   documeto: string
   dataNacimento: Date
@@ -22,6 +25,7 @@
   email: string
   senha: string
   file: file
+```
 
 # baseurl/pessoas
 
@@ -31,6 +35,7 @@
 
 - multipart-form
 
+```
   nome: string
   documeto: string
   dataNacimento: Date
@@ -38,6 +43,7 @@
   email: string
   senha: string
   file: file
+```
 
 ## Endereco
 
@@ -45,6 +51,7 @@
 
 - body
 
+```
   cep: string
   bairro: string
   cidade: string
@@ -53,6 +60,7 @@
   complemento: string
   uf: string
   idPessoa: number
+```
 
 ## Postagem
 
@@ -60,32 +68,41 @@
 
 - parametro
 
+```
   id: number
+```
 
 - body
 
+```
   titulo: string
   descricao: string
   valor: number
+```
 
 # baseurl/deleta/post
 
 - body
 
+```
   id: number
+```
 
 # baseurl/todos/posts
 
 - query
-
+  ```
   pagina: number
   quantidade: number
+  ```
 
 # baseurl/post/:id
 
 - parametro
 
+```
   id: number
+```
 
 # baseurl/pegar/posts/pessoa
 
@@ -93,7 +110,9 @@
 
 - parametro
 
+```
   id: number
+```
 
 ## Aviso: necessário dentro da pasta utils criar uma pasta constants com um arquivo constants.ts com essas variaveis:
 
