@@ -1,3 +1,7 @@
+# Projeto de faculdade
+
+## Uma api para produtos em um aplicativo de desapegar de itens, com integração com a **PagSeguro**
+
 # Rotas
 
 # Login
@@ -138,3 +142,4 @@ export const URLIMAGE = 'sua url';
 ```
 export const KEY ='token do PagSeguro';
 ```
+ -[PagSeguro](https://developer.pagbank.com.br/docs/apis-pagbank)
